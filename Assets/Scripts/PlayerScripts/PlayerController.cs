@@ -12,13 +12,13 @@ public class PlayerController : MonoBehaviour {
     private float speed = 12.0f;            // Player movement speed
     private float jumpHeight = 20.0f;       // Player jump height as vertical speed
 
-    private bool isJump;                    // Bool for if the player has pressed space
+    private bool hasDoubleJump = false;             // Bool for if the player has their double jump
 
     private bool boxCastFeet {
 
         get { return Physics2D.BoxCast(transform.position, boxSize, 0, -transform.up, castDistance, groundLayer); }
 
-    }               // Bool for the BoxCast created in the "isGrounded" function and used in OnDrawGizmo
+    }               // Bool for the BoxCast created in the "IsGrounded" function and used in OnDrawGizmo
 
     [SerializeField] private Rigidbody2D rigidbody; // Stores the rigidbody to apply the movement to
 
@@ -29,10 +29,6 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private float castDistance;    // Field for the distance of the BoxCast from the center of the player
     [SerializeField] private LayerMask groundLayer; // Stores the LayerMask of the intended ground to check for
 
-    [Space]
-
-    [SerializeField] private bool showBoxCast;
-
     void Start() {
 
         
@@ -41,21 +37,29 @@ public class PlayerController : MonoBehaviour {
 
     void Update() {
 
-        isJump = Input.GetButton("Jump");
+        if (IsGrounded() && !Input.GetButton("Jump")) {
+
+            hasDoubleJump = false;
+
+        }
+
+        if (Input.GetButtonDown("Jump")) {
+
+            if (IsGrounded() || hasDoubleJump) {
+
+                rigidbody.velocity = new Vector2(0, jumpHeight);
+
+                hasDoubleJump = !hasDoubleJump;
+
+            }
+
+        }
 
     }
 
     void FixedUpdate() {
 
-        if (isJump && isGrounded()) {
-
-            rigidbody.velocity = new Vector2(speed, jumpHeight);
-
-        } else {
-
-            rigidbody.velocity = new Vector2(speed, rigidbody.velocity.y);
-
-        }
+        
 
     }
 
@@ -66,7 +70,7 @@ public class PlayerController : MonoBehaviour {
 
     }
 
-    public bool isGrounded() {
+    public bool IsGrounded() {
 
         if (boxCastFeet) {
 

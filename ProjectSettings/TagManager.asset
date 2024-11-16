@@ -5,11 +5,13 @@ TagManager:
   serializedVersion: 2
   tags:
   - CameraCheck
+  - Despawn
+  - Obstacle
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
   - Ground
