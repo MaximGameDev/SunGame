@@ -1,23 +1,28 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using TMPro;
+using UnityEditor.UIElements;
 using UnityEngine;
 
-public class ObjectDespawn : MonoBehaviour {
+public class ObjectController : MonoBehaviour {
 
     [SerializeField] float obstacleSpeed = -10.0f;
+    [SerializeField] private string spawnerTag;
+    [SerializeField] public string objectType;
     private Rigidbody2D rigidbody;
 
     void Awake() {
 
-        rigidbody = gameObject.GetComponent<Rigidbody2D>();
+        
 
     }
 
     // Start is called before the first frame update
     void Start() {
-        
-        
+
+        rigidbody = gameObject.GetComponent<Rigidbody2D>();
 
     }
 

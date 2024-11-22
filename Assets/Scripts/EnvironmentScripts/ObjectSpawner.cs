@@ -14,7 +14,8 @@ public class ObjectSpawner : MonoBehaviour {
 
     [SerializeField] private List<GameObject> obstacles;        // Stores the obstacles which could be spawned
 
-    [SerializeField] private MeshCollider mesh;
+    [SerializeField] private MeshCollider spawnArea;
+    private List<int> weightedValues = new List<int>() {0,0,0, 1,1,1, 2,2};
 
     void Start() {
         
@@ -22,8 +23,6 @@ public class ObjectSpawner : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-
-        float spawnX, spawnY;
         
         // Decreases the timer by deltaTime every frame
         spawnTimer -= Time.deltaTime;
@@ -31,41 +30,33 @@ public class ObjectSpawner : MonoBehaviour {
         // Checks if the timer is 0 or less than 0
         if (spawnTimer <= 0.0f) {
 
-            spawnX = UnityEngine.Random.Range(mesh.bounds.min.x, mesh.bounds.max.x);
-            spawnY = UnityEngine.Random.Range(mesh.bounds.min.y, mesh.bounds.max.y);
+            float spawnX, spawnY;
 
-            int pickObstacle = (int)UnityEngine.Random.Range(1, 6);
-            
-            // Switch statement for spawning obstacles at a set probability
-            switch (pickObstacle) {
+            int pickObstacle = weightedValues[UnityEngine.Random.Range(0, weightedValues.Count-1)];
 
-                case 1:
-                    Instantiate(obstacles[0], new Vector3(spawnX, spawnY), Quaternion.identity);
-                break;
+            GameObject obstacleToSpawn = obstacles[pickObstacle];
 
-                case 2:
-                    Instantiate(obstacles[0], new Vector3(spawnX, spawnY), Quaternion.identity);
-                break;
+            string obstacleType = obstacleToSpawn.GetComponent<ObjectController>().objectType;
 
-                case 3:
-                    Instantiate(obstacles[1], new Vector3(spawnX, spawnY), Quaternion.identity);
-                break;
+            spawnX = UnityEngine.Random.Range(spawnArea.bounds.min.x, spawnArea.bounds.max.x);
 
-                case 4:
-                    Instantiate(obstacles[1], new Vector3(spawnX, spawnY), Quaternion.identity);
-                break;
+            if (obstacleType == "tall" || obstacleType == "special") {
 
-                case 5:
-                    Instantiate(obstacles[2], new Vector3(spawnX, spawnY), Quaternion.identity);
-                break;
+                spawnY = spawnArea.bounds.min.y + (obstacleToSpawn.GetComponent<Transform>().localScale.y / 2);
+
+                Debug.Log("spawnY: " + spawnY);
+                Debug.Log("min y area bounds: " + spawnArea.bounds.min.y);
+                Debug.Log("min y obj bounds: " + obstacleToSpawn.GetComponent<SpriteRenderer>().bounds.min.y);
+
+            } else {
+
+                spawnY = UnityEngine.Random.Range(spawnArea.bounds.min.y, spawnArea.bounds.max.y) + 1.5f;
 
             }
 
-            Debug.Log("Obj to spawn: " + pickObstacle);
+            Instantiate(obstacleToSpawn, new Vector3(spawnX, spawnY), Quaternion.identity);
 
             spawnTimer = maxTimer;
-
-            Debug.Log("Spawn Timer: " + spawnTimer);
 
         }
         

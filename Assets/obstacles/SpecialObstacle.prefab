@@ -100,6 +100,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obstacleSpeed: -10
+  spawnArea: {fileID: 0}
+  objectType: special
 --- !u!50 &5227677055657483084
 Rigidbody2D:
   serializedVersion: 4

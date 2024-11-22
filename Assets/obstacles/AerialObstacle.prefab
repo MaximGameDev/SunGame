@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5751723902701411293}
   - component: {fileID: 1889565756426208616}
   - component: {fileID: 1944918118677927362}
-  - component: {fileID: 4754791940149378447}
+  - component: {fileID: 7270677204142932882}
   m_Layer: 0
   m_Name: AerialObstacle
   m_TagString: Obstacle
@@ -100,6 +100,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obstacleSpeed: -10
+  spawnArea: {fileID: 0}
+  objectType: Aerial
 --- !u!50 &1944918118677927362
 Rigidbody2D:
   serializedVersion: 4
@@ -127,7 +129,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &4754791940149378447
+--- !u!61 &7270677204142932882
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
