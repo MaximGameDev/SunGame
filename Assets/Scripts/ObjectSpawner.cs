@@ -15,7 +15,7 @@ public class ObjectSpawner : MonoBehaviour {
     [SerializeField] private List<GameObject> obstacles;        // Stores the obstacles which could be spawned
 
     [SerializeField] private MeshCollider spawnArea;
-    private List<int> weightedValues = new List<int>() {0,0,0, 1,1,1, 2,2};
+    private List<int> weightedValues = new List<int>() {0,0,0, 1,1,1, 2,2, 3,3, 4,4};
 
     void Start() {
         
