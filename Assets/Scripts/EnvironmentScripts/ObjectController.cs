@@ -9,7 +9,6 @@ using UnityEngine;
 public class ObjectController : MonoBehaviour {
 
     [SerializeField] float obstacleSpeed = -10.0f;
-    [SerializeField] private string spawnerTag;
     [SerializeField] public string objectType;
     private Rigidbody2D rigidbody;
 

@@ -7,6 +7,7 @@ using Unity.VisualScripting;
 using UnityEditor.UI;
 using UnityEngine;
 
+
 public class PlayerController : MonoBehaviour {
 
     // Speed Variables
@@ -21,6 +22,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     [SerializeField] private Rigidbody2D rigidbody; // Stores the rigidbody to apply the movement to
+    [SerializeField] private SpriteRenderer spriteRenderer;
 
     [Space]
 
@@ -37,46 +39,54 @@ public class PlayerController : MonoBehaviour {
 
     void Update() {
 
-        if (IsGrounded() && !Input.GetButton("Jump")) {
+        if (!GlobalVariables.isGameOver) {
 
-            hasDoubleJump = false;
+            if (IsGrounded() && !Input.GetButton("Jump")) {
 
-        }
+                hasDoubleJump = false;
 
-        if (Input.GetButtonDown("Jump")) {
+            }
 
-            if (IsGrounded() || hasDoubleJump) {
+            if (Input.GetButtonDown("Jump")) {
 
-                rigidbody.velocity = new Vector2(0, jumpHeight);
+                if (IsGrounded() || hasDoubleJump) {
 
-                hasDoubleJump = !hasDoubleJump;
+                    rigidbody.velocity = new Vector2(0, jumpHeight);
+
+                    hasDoubleJump = !hasDoubleJump;
+
+                }
+
+            }
+
+            if (Input.GetAxis("Vertical") < 0) {
+
+                transform.rotation = Quaternion.Euler(new Vector3(0,0,-90));
+
+            } else {
+
+                transform.rotation = Quaternion.Euler(new Vector3(0,0,0));
 
             }
 
         }
 
-        if (Input.GetAxis("Vertical") < 0) {
-
-            transform.rotation = Quaternion.Euler(new Vector3(0,0,-90));
-
-        } else {
-
-            transform.rotation = Quaternion.Euler(new Vector3(0,0,0));
-
-        }
-
     }
-
-    void FixedUpdate() {
-
-        
-
-    }
-
     void OnDrawGizmos() {
         
         // Draws a wire cube around the position of boxCastFeet
         Gizmos.DrawWireCube(transform.position-transform.up * castDistance, boxSize);
+
+    }
+
+    void OnTriggerEnter2D(Collider2D other) {
+
+        if (other.tag == "Obstacle") {
+
+            spriteRenderer.color = UnityEngine.Color.red;
+            GlobalVariables.isGameOver = true;
+
+        }
 
     }
 

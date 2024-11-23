@@ -28,7 +28,7 @@ public class ObjectSpawner : MonoBehaviour {
         spawnTimer -= Time.deltaTime;
 
         // Checks if the timer is 0 or less than 0
-        if (spawnTimer <= 0.0f) {
+        if (spawnTimer <= 0.0f && !GlobalVariables.isGameOver) {
 
             float spawnX, spawnY;
 
@@ -43,10 +43,6 @@ public class ObjectSpawner : MonoBehaviour {
             if (obstacleType == "tall" || obstacleType == "special") {
 
                 spawnY = spawnArea.bounds.min.y + (obstacleToSpawn.GetComponent<Transform>().localScale.y / 2);
-
-                Debug.Log("spawnY: " + spawnY);
-                Debug.Log("min y area bounds: " + spawnArea.bounds.min.y);
-                Debug.Log("min y obj bounds: " + obstacleToSpawn.GetComponent<SpriteRenderer>().bounds.min.y);
 
             } else {
 

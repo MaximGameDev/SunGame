@@ -899,6 +899,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpHeight: 17
   rigidbody: {fileID: 490180747}
+  spriteRenderer: {fileID: 490180749}
   boxSize: {x: 0.5, y: 0.5}
   castDistance: 0.85
   groundLayer:
