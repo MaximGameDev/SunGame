@@ -937,7 +937,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -949,7 +949,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1680,6 +1680,22 @@ PrefabInstance:
     - target: {fileID: 6861663688816768603, guid: e602015a998b6d249a201bbe413ec2a7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7296400432008911179, guid: e602015a998b6d249a201bbe413ec2a7, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1910.9768
+      objectReference: {fileID: 0}
+    - target: {fileID: 7296400432008911179, guid: e602015a998b6d249a201bbe413ec2a7, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 879.4704
+      objectReference: {fileID: 0}
+    - target: {fileID: 7296400432008911179, guid: e602015a998b6d249a201bbe413ec2a7, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -13.1888
+      objectReference: {fileID: 0}
+    - target: {fileID: 7296400432008911179, guid: e602015a998b6d249a201bbe413ec2a7, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -17.4969
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
