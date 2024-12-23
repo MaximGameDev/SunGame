@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Unity.Mathematics;
 using Unity.VisualScripting;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 
@@ -84,7 +85,7 @@ public class PlayerController : MonoBehaviour {
 
             spriteRenderer.color = UnityEngine.Color.red;
             GlobalVariables.isGameOver = true;
-
+            SceneManager.LoadScene("Game Over");
         }
 
     }
